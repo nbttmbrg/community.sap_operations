@@ -16,9 +16,9 @@
   delay: "{{ async_function_dict.delay | default(0) | int }}"
   until: >
     (async_function_dict.until_false is not defined
-    or async_function_dict.until_false is defined and not test_function_result.stdout | regex_search(async_function_dict.until_false, multiline=True)) and
+    or async_function_dict.until_false is defined and not test_function_result.stdout | regex_search(async_function_dict.until_false, multiline=True) is not None) and
     (async_function_dict.until_true is not defined or
-    async_function_dict.until_true is defined and test_function_result.stdout | regex_search(async_function_dict.until_true, multiline=True))
+    async_function_dict.until_true is defined and test_function_result.stdout | regex_search(async_function_dict.until_true, multiline=True) is not None)
   failed_when: false
 
 - name: Debug stdout
